@@ -42,6 +42,7 @@ int main(void) {
 
 	sTrakking trakkings[TRAKKINGS];
 	sTrakking_initTrakking(trakkings, TRAKKINGS);
+
 	//*******MENU
 	//RETORNO DE MENÚ (PRINCIPAL Y USUARIOS), SI ES 1 VUELVO AL MENU, SI ES 0 SALGO DEL MENU ACTUAL
 	int flagMenuPrincipal;
@@ -51,20 +52,18 @@ int main(void) {
 	flagMenuPrincipal = 0;
 
 	//*******USUARIOS
-	//OPCION DE REGISTRO (SI EL USUARIO NO SE ENCUENTRA REGISTRADO)
-	char opcionRegistro;
 	sUsuario axiliarUsuario;
+	char opcionRegistro;
 	char auxiliarMailIngresado[TAM_EMAIL];
 	char auxiliarContraseniaIngresada[TAM_PASSWORD];
 	int retornoIngresoUsuario;
 	int retornoMailIngresado;
 	int flagIngresoSistema;
 	flagIngresoSistema = 0;
-	//CONTROL DE INGRESO DE CONTRASEÑA
 	int intentosContrasenia;
 	int flagPrimerUsuario;
-	flagPrimerUsuario = 1; //MODIFICAR A 0 CUANDO DESCOMENTE LOS ARRAY DE USUARIO
 	int indexUsuarioEnSistema;
+	flagPrimerUsuario = 1; //MODIFICAR A 0 CUANDO DESCOMENTE LOS ARRAY DE USUARIO
 
 	//*********PRODUCTOS
 	sProducto axiliarProducto;
@@ -73,12 +72,12 @@ int main(void) {
 	flagPrimerProducto = 1; //MODIFICAR A 0 CUANDO DESCOMENTE EL ARRAY DE PRODUCTOS
 
 	//********TRAKKING/VENTAS
+	sTrakking auxiliarTrakking;
 	int axuiliarIdProducto;
 	int indexIdProducto;
 	int cantidadProducto;
 	char opcionConfirmarTrakking;
 	float importeAbonar;
-	sTrakking auxiliarTrakking;
 	int auxiliarBajaTrekking;
 	int flagPrimerTrakking;
 	flagPrimerTrakking = 0;
