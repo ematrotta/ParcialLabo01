@@ -113,7 +113,6 @@ int main(void) {
 					puts("\nNo hay usuarios Ingresados en el sistema. Quiere ser el primero?\n"
 							"¡¡REGISTRESE!!");
 				}
-				//
 				else
 				{
 					//SOLICITO INGRESO DE MAIL Y CONTRASEÑA
@@ -218,7 +217,6 @@ int main(void) {
 					}
 
 				}
-				//AUNQUE SE HAYA REGISTRADO BIEN LO ENVIO NUEVAMENTE AL MENU PRINCIPAL
 				flagMenuPrincipal = 1;
 				break;
 		}
@@ -301,7 +299,7 @@ int main(void) {
 																		{
 																			productos[indexIdProducto].stock -= auxiliarTrakking.cantidad;
 																			puts("\nYa es tuyo y está en camino\n");
-																			//EVALUO SI EL PRODUCTO DEJO DE TENER STOCK
+																			//EVALUO SI EL PRODUCTO DEJO DE TENER STOCK Y LO PAUSO
 																			sProducto_PausarProducto(productos, PRODUCTOS, productos[indexIdProducto].idProducto);
 																			flagPrimerTrakking = 1;
 																		}
@@ -320,7 +318,7 @@ int main(void) {
 													}
 													else
 													{
-														//SI NO SE ENCONTRÓ EL INDICE DEL PRODUCTO SELECCIONADO VUELVO AL MENU
+														//SI NO SE ENCONTRÓ EL INDICE DEL PRODUCTO SELECCIONADO O NO ESTA ACTIVO VUELVO AL MENU
 														puts("\nNo se encontró el producto seleccionado\n");
 
 													}
