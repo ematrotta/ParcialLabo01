@@ -534,8 +534,16 @@ int main(void) {
 											{
 												if(opcionConfirmarBaja == 'S' || opcionConfirmarBaja == 's')
 												{
-													sUsuario_removeUsuario(usuario, USUARIOS, auxiliarBajaUsuario, productos, PRODUCTOS);
-													puts("\nBaja de usuario Exitosa\n");
+													if(sUsuario_removeUsuario(usuario, USUARIOS, auxiliarBajaUsuario, productos, PRODUCTOS)==0)
+													{
+														puts("\nBaja de usuario Exitosa\n");
+													}
+													else
+													{
+														puts("\nNo se encontro el usuario\n");
+													}
+
+
 												}
 											}
 

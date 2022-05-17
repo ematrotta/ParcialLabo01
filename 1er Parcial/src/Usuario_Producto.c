@@ -72,7 +72,7 @@ int sProducto_addProducto(sProducto* listProducto, int lenProducto, char nombre[
 /// @param list array
 /// @param len tamaño del array
 /// @param id id a dar de baja
-/// @return -1 si no se ingresaron correctamente los parámetros
+/// @return -1 si no se ingresaron correctamente los parámetros o no se encontro el usuario, 0 si salio bien
 int sUsuario_removeUsuario(sUsuario* list, int len, int id,sProducto productos[],int lenProductos)
 {
 	int retornoBaja;
