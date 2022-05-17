@@ -429,16 +429,12 @@ int EsAlphaNumericaPlus(char arrayEvaluado[])
     {
         while(arrayEvaluado[i] != '\0')
         {
-            if(arrayEvaluado[i]<',' || arrayEvaluado[i]>'z' || arrayEvaluado[i] == 32)
+            if(arrayEvaluado[i]<',' || arrayEvaluado[i]>'z')
             {
-                if(arrayEvaluado[i] == '-' || arrayEvaluado[i] == '/' || (arrayEvaluado[i]> '9' && arrayEvaluado[i]< 'A') || (arrayEvaluado[i]> 'Z' && arrayEvaluado[i]< 'a') )
-                {
-                    retorno = -1;
-                    break;
-                }
-                if(i>0 && arrayEvaluado[i] == 32)
+                if(i>0 && arrayEvaluado[i] == ' ')
                 {
                 	i++;
+                	continue;
                 }
                 else
                 {
@@ -448,11 +444,17 @@ int EsAlphaNumericaPlus(char arrayEvaluado[])
             }
             else
             {
+
             	if(i==0 && (arrayEvaluado[i] == ',' || arrayEvaluado[i] == '.'))
             	{
             		retorno = -1;
             		break;
             	}
+                if(arrayEvaluado[i] == '-' || arrayEvaluado[i] == '/' || (arrayEvaluado[i]> '9' && arrayEvaluado[i]< 'A') || (arrayEvaluado[i]> 'Z' && arrayEvaluado[i]< 'a') )
+                {
+                    retorno = -1;
+                    break;
+                }
             	i++;
 
             }
@@ -713,7 +715,7 @@ int GetCuit(int * pNumero)
 /// @param passwordInput cadena ingresada
 /// @param minChar cantidad minima de caracteres
 /// @param maxChar cantidad maxima de car
-/// @return
+/// @return 0 si salio bien, -1 si salio mal
 int GetPassword(char passwordInput[],int minChar,int maxChar,char mensajeError[])
 {
 	int retorno;
@@ -733,7 +735,7 @@ int GetPassword(char passwordInput[],int minChar,int maxChar,char mensajeError[]
 		if(contadorCaracteres<minChar || contadorCaracteres>maxChar)
 		{
 			retorno = -1;
-			printf("%s",mensajeError);
+			printf("\n%s\n",mensajeError);
 		}
 
 	}

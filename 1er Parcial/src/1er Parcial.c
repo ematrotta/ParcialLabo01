@@ -13,7 +13,7 @@
 #include "Usuario_Producto_Trakking.h"
 
 #define USUARIOS 6
-#define PRODUCTOS 4
+#define PRODUCTOS 5
 #define TRAKKINGS 5
 
 int main(void) {
@@ -46,6 +46,7 @@ int main(void) {
 	//RETORNO DE MENÚ (PRINCIPAL Y USUARIOS), SI ES 1 VUELVO AL MENU, SI ES 0 SALGO DEL MENU ACTUAL
 	int flagMenuPrincipal;
 	int flagMenuUsuario;
+	int retornoMenuPrincipal;
 	flagMenuUsuario = 0;
 	flagMenuPrincipal = 0;
 
@@ -90,10 +91,15 @@ int main(void) {
 
 	do
 	{
-		Utn_GetNumeroInt(&OpcionMenuInicio, "**************************\n"
+		retornoMenuPrincipal = Utn_GetNumeroInt(&OpcionMenuInicio, "**************************\n"
 				"** 1er EXAMEN LAB 1 - H **\n"
 				"**************************\n\n"
 				"1)INGRESAR\n2)REGISTRARSE\n\n0)SALIR\n\nOPCIÓN", "La opcion debe estar entre 0 y 2", 2, 0, 3);
+		if(retornoMenuPrincipal != 0)
+		{
+			//SI EL RETORNO DEL MENU ES ERRONEO SALE
+			break;
+		}
 		switch(OpcionMenuInicio)
 		{
 			case 0:
@@ -218,8 +224,7 @@ int main(void) {
 				break;
 		}
 
-		//INGRESO AL SISTEMA SI LO QUE REORNO LA VERIFICACION DE USUARIO ES CORRECTA Y
-		//SI EL RETORNO DEL MENUPRINCIPAL NO ES 0
+		//INGRESO AL SISTEMA
 		if(retornoIngresoUsuario == 0 && flagIngresoSistema == 1)
 		{
 
@@ -274,7 +279,8 @@ int main(void) {
 												else
 												{
 													indexIdProducto = sProducto_findProductoById(productos, PRODUCTOS, axuiliarIdProducto);
-													if(indexIdProducto>= 0)
+													//SI SE ENCONTRO UN UNIDICE Y ESTA HABILITADO PARA LA COMPRA
+													if(indexIdProducto>= 0 && productos[indexIdProducto].isEmpty == FALSE)
 													{
 														//SI ENCUENTRA EL ID DEL PRODUCTO QUE INGRESO
 														printf("\nCantidad actual: %d\n",productos[indexIdProducto].stock);
@@ -360,7 +366,7 @@ int main(void) {
 									printf("\n|%-15s|%-25s|%-15s|%-15s\n","ID TRAKKING","NOMBRE DEL PRODUCTO","CANTIDAD","ESTADO");
 									if(sTrakking_printAllByTypeUser(trakkings, TRAKKINGS, productos, PRODUCTOS, usuario[indexUsuarioEnSistema].idUsuario, 1)!=0)
 									{
-										puts("\nUsted no tiene compras\n");
+										puts("Usted no tiene compras\n");
 									}
 									else
 									{
@@ -373,7 +379,8 @@ int main(void) {
 											}
 											else
 											{
-												if(sTrakking_BajaTrakking(trakkings,TRAKKINGS, auxiliarBajaTrekking)==0)
+												//ACTUALIZO EL TRAKKING HASTA ULTIMO MOMENTO
+												if(sTrakking_ActualizarEstadosTrakking(trakkings, TRAKKINGS)==0 && sTrakking_BajaTrakking(trakkings,TRAKKINGS, auxiliarBajaTrekking)==0)
 												{
 													puts("\nCompra cancelada\n");
 													//DEVUELVO AL STOCK LA CANTIDAD DEL TRAKKING, SI HABÍA QUEDADO PAUSADA POR FALTA DE STOCK, LA REACTIVO
@@ -398,7 +405,7 @@ int main(void) {
 									printf("\n|%-15s|%-25s|%-15s|%-15s\n","ID TRAKKING","NOMBRE DEL PRODUCTO","CANTIDAD","ESTADO");
 									if(sTrakking_printAllByTypeUser(trakkings, TRAKKINGS, productos, PRODUCTOS, usuario[indexUsuarioEnSistema].idUsuario, 0)!=0)
 									{
-										puts("\nUsted no tiene ventas\n");
+										puts("Usted no tiene ventas\n");
 									}
 									flagMenuUsuario =1;
 									break;
@@ -406,9 +413,10 @@ int main(void) {
 						}
 						else
 						{
+							//SI LA OPCION INGRESADA NO ES CORRECTA
 							flagMenuUsuario = 0;
 						}
-						//SI LA OPCION INGRESADA ES 1, VUELVE AL MENU DE USUARIO
+
 					}while(flagMenuUsuario == 1);
 
 				}
@@ -490,7 +498,7 @@ int main(void) {
 													{
 														if(sProducto_removeProducto(productos, PRODUCTOS, axuiliarIdProducto) == 0)
 														{
-															puts("\nBaja de usuario Exitosa\n");
+															puts("\nBaja de producto Exitosa\n");
 														}
 
 													}
@@ -580,5 +588,5 @@ int main(void) {
 	}while(flagMenuPrincipal == 1);
 
 
-	return EXIT_SUCCESS;
+	return retornoMenuPrincipal;
 }

@@ -105,7 +105,7 @@ int sUsuario_InputsDataUsuario(sUsuario * usuario, char mensajeError[])
 			if(Utn_GetString(auxiliar.password, "Ingrese una contraseña", "ERROR. Maxima cantidad de caracteres: 9", TAM_PASSWORD, 3) == 0 && GetPassword(auxiliar.password,4,TAM_PASSWORD,"Error. debe contener entre 4 y 9 caracteres")==0)
 			{
 				//INGRESO DOMICILIO
-				if(Utn_GetStringAlfaNumericaPlus(auxiliar.domicilio, "Ingrese su direccion", "ERROR. Maxima cantidad de caracteres: 49", TAM_DOMICILIO, 3) == 0)
+				if(Utn_GetStringAlfaNumericaPlus(auxiliar.domicilio, "Ingrese su direccion", "ERROR. Maxima cantidad de caracteres: 49 o Ingreso un caracter erroneo", TAM_DOMICILIO, 3) == 0)
 				{
 					//INGRESO CP
 					if(Utn_GetNumeroInt(&auxiliar.codigoPostal, "Ingrese codigo postal", "ERROR. El número debe estar entre 0001 y 9999", 9999, 1, 3)==0)
